@@ -2,6 +2,7 @@ const {
   addExpense,
   getExpense,
   deleteExpense,
+  exportExpenses,
 } = require("../controllers/expense");
 const {
   addIncome,
@@ -18,6 +19,7 @@ router
   .delete("/delete-income/:id", deleteIncome)
   .post("/add-expense", addExpense)
   .get("/get-expenses", getExpense)
-  .delete("/delete-expense/:id", deleteExpense);
+  .delete("/delete-expense/:id", deleteExpense)
+  .get("/export", exportExpenses);
 
 module.exports = router;

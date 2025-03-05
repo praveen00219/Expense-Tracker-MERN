@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import { useGlobalContext } from "../../context/globalContext";
 import History from "../../History/History";
 import { rupee } from "../../utils/Icons";
@@ -20,9 +21,47 @@ function Dashboard() {
     getExpenses();
   }, []);
 
+  // Function to handle CSV export
+  const handleExport = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        // "http://localhost:5000/api/expenses/export",
+        "https://expense-tracker-backend-1rz0.onrender.com/api/expenses/export",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          responseType: "blob", // Important for file downloads
+        }
+      );
+
+      // Create a download link for the CSV file
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "expenses.csv"); // Set the file name
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Failed to export expenses:", err);
+      alert("Failed to export expenses. Please try again.");
+    }
+  };
+
   return (
     <div className="container mt-4">
       <h2 className="text-center">All Transactions</h2>
+
+      {/* Export Button */}
+      <div className="text-center mb-4">
+        <button onClick={handleExport} className="btn btn-success">
+          Export Expenses to CSV
+        </button>
+      </div>
+
       <div className="row g-4 mt-3">
         {/* Chart Section */}
         <div className="col-md-8">
