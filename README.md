@@ -69,23 +69,23 @@ cd expense-tracker
 
 ### Signup:
 
--Visit the signup page (/signup).
--Enter your name, email, and password.
--Verify your email by clicking the link sent to your inbox.
+- Visit the signup page (/signup).
+- Enter your name, email, and password.
+- Verify your email by clicking the link sent to your inbox.
 
 ### Login:
 
--Visit the login page (/login).
--Enter your email and password.
--You will be redirected to the dashboard upon successful login.
+- Visit the login page (/login).
+- Enter your email and password.
+- You will be redirected to the dashboard upon successful login.
 
 ### Dashboard:
 
--View your total expenses and categorized breakdowns.
--Add new expenses using the expense form.
--Delete expenses by clicking on trash icon.
--Filter expenses by date or category.
--Export expenses to a CSV file.
+- View your total expenses and categorized breakdowns.
+- Add new expenses using the expense form.
+- Delete expenses by clicking on trash icon.
+- Filter expenses by date or category.
+- Export expenses to a CSV file.
 
 ### Logout:
 
@@ -95,21 +95,23 @@ Click the "Logout" button in the navbar to log out.
 
 ### Auth Routes
 
--POST /api/auth/signup: Create a new user.
--POST /api/auth/login: Authenticate user and return a JWT.
--POST /api/auth/logout: Log out the user (optional).
+- **POST:** /api/auth/signup: Create a new user.
+
+- **POST:** /api/auth/login: Authenticate user and return a JWT.
+
+- **POST:** /api/auth/logout: Log out the user (optional).
 
 ### Expense Routes
 
--POST: /api/v1/add-income: Add a new income.
--POST: /api/v1/add-expense: Add a new expense.
--GET: /api/v1/get-incomes: Get all incomes (with filters for date and category).
--GET: /api/v1/get-expenses: Get all expenses (with filters for date and category).
--DELETE: /api/v1/delete-income/:id: Delete an income.
--DELETE: /api/v1/delete-expense/:id: Delete an expense.
+- **POST:** /api/v1/add-income: Add a new income.
+- **POST:** /api/v1/add-expense: Add a new expense.
+- **GET:** /api/v1/get-incomes: Get all incomes (with filters for date and category).
+- **GET:** /api/v1/get-expenses: Get all expenses (with filters for date and category).
+- **DELETE:** /api/v1/delete-income/:id: Delete an income.
+- **DELETE:** /api/v1/delete-expense/:id: Delete an expense.
 
 ### User Registration Routes
 
--POST: /api/auth/signup
--POST: /api/auth/login
--POST: /api/auth/logout
+- **POST:** /api/auth/signup
+- **POST:** /api/auth/login
+- **POST:** /api/auth/logout
