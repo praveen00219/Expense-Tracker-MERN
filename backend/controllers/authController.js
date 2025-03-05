@@ -4,6 +4,9 @@ const bcrypt = require("bcryptjs");
 const sendEmail = require("../utils/email");
 
 exports.signup = async (req, res) => {
+  // const frontendUrl = process.env.FRONTEND_URL;
+  const frontendUrl = "https://expense-tracker-mern-prvn.onrender.com";
+
   const { name, email, password } = req.body;
   try {
     const user = await User.create({ name, email, password });
@@ -13,7 +16,7 @@ exports.signup = async (req, res) => {
     await sendEmail(
       email,
       "Verify Email",
-      `Click here to verify: http://yourapp.com/verify?token=${token}`
+      `Click here to verify: ${frontendUrl}/verify?token=${token}`
     );
     res
       .status(201)
