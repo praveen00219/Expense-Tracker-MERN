@@ -13,6 +13,39 @@ function Expenses() {
   useEffect(() => {
     getExpenses();
   }, []);
+
+  // Function to export expenses as CSV
+  const exportToCSV = () => {
+    if (expenses.length === 0) {
+      alert("No expenses to export!");
+      return;
+    }
+
+    const headers = [
+      "Title",
+      "Amount",
+      "Date",
+      "Category",
+      "Description",
+      "Type",
+    ];
+    const rows = expenses.map(
+      ({ title, amount, date, category, description, type }) =>
+        [title, amount, date, category, description, type].join(",")
+    );
+
+    const csvContent = [headers.join(","), ...rows].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "expenses.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <ExpenseStyled>
       <InnerLayout>
@@ -21,6 +54,12 @@ function Expenses() {
           Total Expense:
           <span className="fw-bold text-success mx-2">₹{totalExpenses()}</span>
         </p>
+        {/* Export Button */}
+        <div className="text-center mb-4">
+          <button className="btn btn-success" onClick={exportToCSV}>
+            Export Expenses to CSV
+          </button>
+        </div>
         <hr />
         <div className="row income-content">
           <div className="col-md-5 form-container">

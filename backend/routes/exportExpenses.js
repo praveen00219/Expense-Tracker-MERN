@@ -12,7 +12,7 @@ router.get("/export", authMiddleware, async (req, res) => {
     const expenses = await Expense.find({ userId: req.user.id });
 
     // Define CSV fields
-    const fields = ["amount", "category", "date", "description"];
+    const fields = ["title", "amount", "category", "date", "description"];
     const json2csvParser = new Parser({ fields });
 
     // Convert expenses to CSV
