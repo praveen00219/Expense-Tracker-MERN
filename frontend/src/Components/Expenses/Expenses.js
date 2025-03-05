@@ -49,13 +49,17 @@ function Expenses() {
   return (
     <ExpenseStyled>
       <InnerLayout>
-        <h1 className="">Expenses</h1>
-        <p className="total-income">
-          Total Expense:
-          <span className="fw-bold text-success mx-2">₹{totalExpenses()}</span>
-        </p>
-        {/* Export Button */}
-        <div className="text-center mb-4">
+        <div className="d-flex align-items-start justify-content-between mb-4">
+          <div>
+            <h1 className="">Expenses</h1>
+            <p className="total-income">
+              Total Expense:
+              <span className="fw-bold text-success mx-2">
+                ₹{totalExpenses()}
+              </span>
+            </p>
+          </div>
+          {/* Export Button */}
           <button className="btn btn-success" onClick={exportToCSV}>
             Export Expenses to CSV
           </button>
