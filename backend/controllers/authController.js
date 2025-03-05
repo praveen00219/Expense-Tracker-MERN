@@ -38,3 +38,8 @@ exports.login = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+exports.logout = async (req, res) => {
+  // You can add token invalidation logic here (e.g., add the token to a blacklist)
+  res.status(200).json({ message: "Logged out successfully" });
+};

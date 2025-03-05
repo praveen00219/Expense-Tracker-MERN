@@ -1,4 +1,10 @@
 import React, { useState, useMemo } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import styled from "styled-components";
 import bg from "./img/bg.png";
 import { MainLayout } from "./styles/Layouts";
@@ -8,6 +14,13 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import Income from "./Components/Income/Income";
 import Expenses from "./Components/Expenses/Expenses";
 import { useGlobalContext } from "./context/globalContext";
+import Login from "./Components/Auth/Login";
+import Signup from "./Components/Auth/Signup";
+
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" />;
+};
 
 function App() {
   const [active, setActive] = useState(1);
@@ -35,10 +48,25 @@ function App() {
   return (
     <AppStyled bg={bg} className="App">
       {orbMemo}
-      <MainLayout>
-        <Navigation active={active} setActive={setActive} />
-        <main>{displayData()}</main>
-      </MainLayout>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <MainLayout>
+                  <Navigation active={active} setActive={setActive} />
+                  <main>{displayData()}</main>
+                </MainLayout>
+              </PrivateRoute>
+            }
+          />
+          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Navigate to="/dashboard" />} /> */}
+        </Routes>
+      </Router>
     </AppStyled>
   );
 }

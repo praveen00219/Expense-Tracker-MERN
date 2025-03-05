@@ -13,11 +13,11 @@ const authMiddleware = require("../middleware/authMiddleware");
 const router = require("express").Router();
 
 router
-  .post("/add-income", authMiddleware, addIncome)
-  .get("/get-incomes", authMiddleware, getIncomes)
-  .delete("/delete-income/:id", authMiddleware, deleteIncome)
-  .post("/add-expense", authMiddleware, addExpense)
-  .get("/get-expenses", authMiddleware, getExpense)
-  .delete("/delete-expense/:id", authMiddleware, deleteExpense);
+  .post("/add-income", addIncome)
+  .get("/get-incomes", getIncomes)
+  .delete("/delete-income/:id", deleteIncome)
+  .post("/add-expense", addExpense)
+  .get("/get-expenses", getExpense)
+  .delete("/delete-expense/:id", deleteExpense);
 
 module.exports = router;
